@@ -1,0 +1,53 @@
+<!-- Maarit Parkkonen 2019, SaalisApp, lajilistamodaali-->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{asetukset.otsikko}}</ion-title>          <!-- lajiosaston mukaan-->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="welcome-card" color="light">
+      <ion-card-content class="ion-no-padding">
+          <!-- lajilistaus -->
+          <ion-list>
+              <ion-list-header [color]="asetukset.vari">
+                <ion-label>Valitse:</ion-label>
+              </ion-list-header>
+
+              <!-- lajin valinta -->
+              <ion-radio-group>
+                <ion-item *ngFor="let laji of asetukset.lajilista">
+                  <ion-label>{{laji}}</ion-label>
+                  <ion-radio slot="end" [value]="laji" (ionSelect)="vaihdaLaji(laji)"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+
+            </ion-list>                
+      </ion-card-content>
+    
+    </ion-card>
+  </ion-content>
+  
+  <ion-footer class="ion-no-padding">
+      <!-- alapainikkeet -->
+      <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div>
+                <!-- sulku ilman valintaa -->
+                <ion-button size="medium" expand="full" color="medium" (click)=peruuta()>
+                  Peru
+                </ion-button>
+              </div>
+            </ion-col>
+            <ion-col>
+              <!-- valinta ok -->
+              <div>
+                <ion-button [disabled]="!valittu" size="medium" expand="full" color="medium" (click)=valintaTehty()>
+                  Valmis
+                </ion-button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  </ion-footer>

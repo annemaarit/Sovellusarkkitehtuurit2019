@@ -1,0 +1,42 @@
+<!-- @Maarit Parkkonen, 2019, ot7, kuvaussovellus: päänäkymä -->
+<ion-header>
+  <ion-toolbar color="dark">
+    <!-- sovellusnimi-->
+    <div class="ion-padding-start">
+        <p>
+            Kuvaussovellus
+        </p>
+    </div>
+
+    <!--uuden kuvan ottaminen / hakeminen eli kamerapainike-->
+    <ion-buttons slot="end">
+      <ion-button color="light" fill="solid" (click)="kuvalista.avaaPop()" [disabled]="kuvalista.taynna">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <!-- kuvaslideri -->
+    <ion-slides #slides pager="true">
+        <!--yksittäisen kuvan slide-->
+        <ion-slide *ngFor="let kuva of kuvalista.kuvat">
+          <!--kuvakortti-->
+          <ion-card color="medium">
+            <ion-card-content>
+                <img [src]="kuva.base64Tiedot">
+            </ion-card-content>
+            <!-- kuvan nimi -->
+            <ion-card-title>{{kuva.nimi}}</ion-card-title>
+            <!-- poistopainike -->
+            <ion-button color="danger" fill="solid" size="small" (click)="poista(kuva);">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-button>
+          </ion-card>
+        </ion-slide>
+    </ion-slides>
+
+    <p *ngIf="kuvalista.kuvavirhe" padding>{{kuvalista.kuvavirhe}}</p>
+
+</ion-content>

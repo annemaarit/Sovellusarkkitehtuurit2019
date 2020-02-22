@@ -1,0 +1,40 @@
+<!--
+    file: velat.component.html
+    desc: OT2, vippikirjanpito
+            - velkojen näkymä: taulukko, lisäyskentät ja velan poisto
+    date: 30.1.2019
+    auth: Maarit Parkkonen
+--> 
+<div class="card">
+  <h2>Velat</h2>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Kenelle</th>
+        <th>Summa</th>
+        <th></th>
+      </tr>
+    </thead>  
+    <tbody>
+      <!--kaikkien velkojen läpikäynti-->
+      <tr *ngFor="let vippaus of vippilistat.velat">
+        <td>{{ vippaus.nimi }}</td>
+        <td>{{ vippaus.summa }}</td>
+        <!--velan poistopainike-->
+        <td><button (click)="poistaVelka(vippaus.id)" class="btn btn-danger ml-2">Poista</button></td>
+      </tr>
+  
+    <tr class="uusi"> <!--uuden velan lisäys-->
+      <td><input [(ngModel)]="nimi" type="text" class="form-control" placeholder="kenelle.."></td>
+      <td><input [(ngModel)]="summa" type="text" class="form-control" placeholder="summa"></td>
+      <td><button (click)="lisaaUusiVelka()" class="btn btn-info ml-2">Lisää velkoihin</button></td>
+    </tr>
+    </tbody>
+  </table>
+  <p>Velkasi on yhteensä {{summaus}} euroa</p>
+</div>
+
+<!--paluu painike päänäkymään-->
+<button routerLink="" class="btn btn-primary paluu mt-3">Sulje</button>
+

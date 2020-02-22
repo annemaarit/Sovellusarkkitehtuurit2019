@@ -1,0 +1,48 @@
+/*
+    file: styles.css
+    desc: OT3, Live -valuuttamuunnin
+            - yleiset tyylimääritykset
+    date: 24.2.2019
+    auth: Maarit Parkkonen
+*/
+
+/*otetaan bootstrap mukaan*/
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+/*https://www.w3schools.com/howto/howto_css_cards.asp*/
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.384);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    background-color: rgb(182, 233, 180);
+    padding: 2px 16px;
+    margin: auto;
+    margin-top: 10px;
+    padding: 20px;
+    max-width: 650px;
+  }
+
+  .btn {
+    background-color: rgb(58, 60, 151);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 200px;
+  }
+
+  .tekija {
+        margin-top: 20px;
+        font-style: italic;
+  }
+
+  .ryhma{
+    width: 350px;
+  }
+
+  label {
+    width: 400px;
+    font-weight: bold;
+  }

@@ -1,0 +1,82 @@
+<!-- Maarit Parkkonen, 2019, uuden ilmoituksen esikatselumodaali-->
+<ion-header>
+  <ion-toolbar>
+
+    <ion-title> 
+        Esikatselu
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+          <ion-card class="welcome-card" color="light">
+            <!--kuva-->
+            <ion-img [src]="asetukset.kuva"></ion-img>
+            <ion-card-content class="ion-no-padding">
+                <ion-list lines="none">
+                  <!--otsikko-->
+                    <ion-list-header class="otsikko">
+                      <ion-label>{{asetukset.otsikko}}</ion-label>
+                    </ion-list-header>
+                    <!--yleisteksti-->
+                    <ion-item>
+                      <p class="teksti">
+                          {{asetukset.teksti}}
+                      </p>
+                    </ion-item>
+                    <!--ilmoittajan nimi-->
+                    <ion-item>
+                      <ion-icon slot="start" color="tertiary" name="person"></ion-icon>
+                      <ion-label>{{asetukset.ilmoittaja.etunimi}} {{asetukset.ilmoittaja.sukunimi}}</ion-label>
+                    </ion-item>
+                    <!--puhelinnumero-->
+                    <ion-item *ngIf="asetukset.ilmoittaja.puhelin">
+                        <ion-icon slot="start" color="tertiary" name="call"></ion-icon>
+                        <ion-label>{{asetukset.ilmoittaja.puhelin}}</ion-label>
+                    </ion-item>
+                    <!--sähköposti-->
+                    <ion-item *ngIf="asetukset.ilmoittaja.email">
+                        <ion-icon slot="start" color="tertiary" name="mail"></ion-icon>
+                        <ion-label>{{asetukset.ilmoittaja.email}}</ion-label>
+                    </ion-item>
+                    <!--alue-->
+                    <ion-item>
+                        <ion-icon slot="start" color="tertiary" name="locate"></ion-icon>
+                        <ion-label>{{asetukset.alue}}</ion-label>
+                    </ion-item>
+                    <!--ilmoituksen julkaisupäivä-->
+                    <ion-item>
+                        <ion-icon slot="start" color="tertiary" name="time"></ion-icon>
+                        <ion-label>{{asetukset.paivays}}</ion-label>
+                    </ion-item>
+
+                  </ion-list>                
+            </ion-card-content>
+          
+          </ion-card>
+
+</ion-content>
+
+<ion-footer class="ion-no-padding">
+  <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-button size="medium" expand="full" color="medium" (click)=peruuta()>
+              <ion-icon slot="start" name="exit"></ion-icon>
+              Muokkaa
+            </ion-button>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-button size="medium" expand="full" color="medium" (click)=valmis()>
+              <ion-icon slot="start" name="share"></ion-icon>
+              Julkaise
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-footer>

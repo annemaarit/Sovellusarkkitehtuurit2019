@@ -1,0 +1,28 @@
+<!--
+    file: app.component.html
+    desc: OT1, painoindeksilaskuri
+            - bodyn sisältö
+    date: 25.1.2019
+    auth: Maarit Parkkonen
+--> 
+<div class="container">
+    <div class="card">
+            <h2 class="mt-3">Painoindeksilaskuri</h2>
+
+            <!--tietojen syöttökentät-->
+            <input [(ngModel)]="pituus" type="text" class="form-control mt-3" placeholder="Kirjoita pituus senttimetreinä..">
+            <input [(ngModel)]="paino" type="text" class="form-control mt-3" placeholder="Kirjoita paino kiloina..">    
+            <button class="btn btn-primary mt-3" (click)="laskeIndeksi()">Laske painoindeksi</button> 
+
+            <!--laskennan tulos-->
+            <div [style.background-color]="vari" [style.color]="fonttivari" class="alert mt-3 border" *ngIf="dg">
+                {{indeksi | number : '1.0-2'}}{{dg}} 
+            </div>
+
+            <!--virheilmoitus, jos tietoja puuttuu-->
+            <div [style.background-color]="vari" [style.color]="fonttivari" class="alert mt-3 border" *ngIf="virhe">
+                    {{virhe}} 
+            </div>
+    </div>
+</div>
+

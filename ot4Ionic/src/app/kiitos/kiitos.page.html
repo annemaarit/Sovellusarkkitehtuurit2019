@@ -1,0 +1,23 @@
+<!-- neljäs näyttö, kiitos -->
+
+<!-- tilan varaaja, varsinainen header app.component.html:ssa-->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>kiitos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <!-- kiitoskortti -->
+    <ion-card color="light">
+        <ion-card-header>
+            <ion-card-title>KIITOS</ion-card-title>
+        </ion-card-header>
+        <ion-item>
+            <ion-text color="danger" padding>
+                <h1>Mökki varattu!</h1>
+              </ion-text>
+        </ion-item>
+        <ion-button routerLink="/home" expand="block">Palaa alkuun</ion-button>
+      </ion-card>
+</ion-content>

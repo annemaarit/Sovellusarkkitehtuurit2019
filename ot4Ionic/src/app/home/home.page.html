@@ -1,0 +1,90 @@
+<!-- ensimmäinen näyttö, varaustiedotlomake 1 -->
+
+<!-- tilan varaaja, varsinainen header app.component.html:ssa-->
+<ion-header>
+    <ion-toolbar color="">
+      <ion-title>
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card color="light">
+      <ion-card-header>
+          <ion-card-title>Varaustiedot</ion-card-title>
+      </ion-card-header>
+      <form>
+
+        <!-- alasvetovalikko mökeistä -->
+        <ion-list>
+          <ion-item>
+            <ion-label>Mökki (€/vrk)</ion-label>
+              <ion-select [(ngModel)]="mokkivaraus.varaus.mokki" name="mokki" placeholder="Valitse.." okText="OK" cancelText="Peru" (ionChange)="paivitaSumma()">
+                  <ion-select-option [value]="mokki" *ngFor="let mokki of mokkivaraus.mokit">
+                    {{mokki.nimi}} ({{mokki.hinta}}€)
+                  </ion-select-option>
+              </ion-select>
+          </ion-item>
+       </ion-list>
+  
+       <!-- aloituspäivämäärän valinta -->
+       <ion-item>
+          <ion-label>AloitusPvm</ion-label>
+          <ion-datetime
+            [(ngModel)]="mokkivaraus.varaus.alkuPvm"
+            name="alkuPvm"
+            placeholder="Valitse...."
+            [min]="minVuosi"
+            [max]="maxVuosi"
+            display-format="DDD D.M.YYYY"
+            month-names="tammikuu, helmikuu, maaliskuu, huhtikuu, toukokuu, kesakuu, heinakuu, elokuu, syyskuu, lokakuu, marraskuu, joulukuu"
+            month-short-names="tammi, helmi, maalis, huhti, touko, kesa, heina, elo, syys, loka, marras, joulu"
+            day-names="sunnuntai, maanantai, tiistai, keskiviikko, torstai, perjantai, lauantai"
+            day-short-names="su, ma, ti, ke, to, pe, la"
+            cancel-text="Peru"
+            done-text="OK">
+          </ion-datetime>
+       </ion-item>
+      
+       <!-- varauksen kesto -->
+       <ion-item>
+        <ion-label>Kesto</ion-label>
+        <ion-range  [(ngModel)]="mokkivaraus.varaus.paivatKpl" name="paivatKpl" min="1" max="7" step="1" pin="true" snaps="true" color="secondary" (ionChange)="paivitaSumma()">
+          <ion-label slot="start">1</ion-label>
+          <ion-label slot="end">7</ion-label>
+        </ion-range>
+        <ion-badge color="danger">{{mokkivaraus.varaus.paivatKpl}} vrk</ion-badge>
+       </ion-item>
+
+       <!-- loppusiivouksen valinta -->
+       <ion-item>
+        <ion-label>Siivous (+100e)</ion-label>
+        <ion-checkbox [(ngModel)]="mokkivaraus.varaus.siivous" name="siivous" color="danger" (ionChange)="paivitaSumma()"></ion-checkbox>
+       </ion-item>
+
+       <!-- varauksen kokonaishinta -->
+       <ion-item>
+        <ion-label>Loppusumma</ion-label>
+        <ion-badge color="danger">{{mokkivaraus.varaus.summa}} €</ion-badge>
+       </ion-item>
+
+      </form>
+
+  </ion-card>
+    <!-- testausta varten 
+    <div class="alert alert-info mt-3 border">
+      {{mokkivaraus.varaus | json}} 
+    </div>-->
+</ion-content>
+
+<ion-footer>
+    <!-- navigointipainikkeet -->
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button routerLink="/henkilo" color="dark" fill="solid"> Seuraava
+            <ion-icon slot="end" name="arrow-forward"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
+</ion-footer>

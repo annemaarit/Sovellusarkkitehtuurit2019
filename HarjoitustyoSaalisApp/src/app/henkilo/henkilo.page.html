@@ -1,0 +1,81 @@
+<!-- Maarit Parkkonen, 2019, henkilötietojen syöttönäkymä-->
+<ion-header>
+    <ion-toolbar>
+      <ion-title>SaalisApp</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+      <ion-card class="welcome-card" color="light">
+        <ion-card-content class="ion-no-padding">
+            <ion-list>
+                <ion-list-header color="dark">
+                  <ion-label>Uusi ilmoittaja</ion-label>
+                </ion-list-header>
+                <!-- käyttäjätunnus -->
+                <ion-item>
+                    <ion-label position="stacked">Tunnus*</ion-label>
+                    <ion-input [(ngModel)]="uusi.tunnus" placeholder="salainen.."></ion-input>
+                </ion-item>
+                
+                <!-- nimitiedot -->
+                <ion-item>
+                    <ion-label position="stacked">Etunimi tai nimimerkki*</ion-label>
+                    <ion-input [(ngModel)]="uusi.etunimi" placeholder="julkinen.."></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="stacked">Sukunimi</ion-label>
+                    <ion-input [(ngModel)]="uusi.sukunimi" placeholder="julkinen.."></ion-input>
+                </ion-item>
+
+                <!-- yhteystiedot -->
+                <ion-item>
+                    <ion-label position="stacked">Puhelin</ion-label>
+                    <ion-input [(ngModel)]="uusi.puhelin" placeholder="julkinen.."></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Sähköpostiosoite</ion-label>
+                    <ion-input [(ngModel)]="uusi.email" placeholder="julkinen.."></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Katuosoite</ion-label>
+                    <ion-input [(ngModel)]="uusi.katuosoite" placeholder="julkinen.."></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Postinumero</ion-label>
+                    <ion-input [(ngModel)]="uusi.postinumero" placeholder="julkinen.."></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Postitoimipaikka</ion-label>
+                    <ion-input [(ngModel)]="uusi.postitoimipaikka" placeholder="julkinen.."></ion-input>
+                </ion-item>
+              </ion-list>                
+        </ion-card-content>
+      
+      </ion-card>
+    </ion-content>
+    
+    <ion-footer class="ion-no-padding">
+      <!-- alalaidan painikkeet -->
+        <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div>
+                  <!-- paluu pääsivulle -->
+                  <ion-button size="medium" expand="full" color="medium" routerLink="/home">
+                    Peru
+                  </ion-button>
+                </div>
+              </ion-col>
+              <ion-col>
+                <div>
+                  <!-- henkilötietojen tallennus -->
+                  <ion-button size="medium" expand="full" color="medium" (click)=tallennaHenkilo()>
+                    Valmis
+                  </ion-button>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+    </ion-footer>

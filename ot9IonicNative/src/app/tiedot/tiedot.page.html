@@ -1,0 +1,53 @@
+<!-- paikan näyttömodaalin sisältö-->
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title> Sijaintimuistio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-list>
+            <!-- paikan tiedot -->
+            <ion-list-header color="medium">
+                <ion-label>{{paikka.otsikko}} <i>{{paikka.pvm | date:'d.M.yyyy'}}</i></ion-label>
+            </ion-list-header>
+            <ion-item lines="none">
+                <ion-label><strong>Sijainti</strong></ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-text>({{paikka.lat}} , {{paikka.lon}})</ion-text>
+            </ion-item>
+      
+            <ion-item lines="none">
+                <ion-label><strong>Lisätiedot</strong></ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-text>{{paikka.teksti}}</ion-text>
+            </ion-item>
+            
+            <!-- paikan kuvat -->
+            <ion-item lines="none" *ngIf="paikka.kuvat.length>0">
+                <ion-label><strong>Kuvat</strong></ion-label>
+            </ion-item>
+            <ion-item  *ngFor="let kuva of paikka.kuvat" lines="none">
+                <ion-img [src]="kuva" class="ion-padding-bottom"></ion-img>
+            </ion-item>
+            
+          </ion-list>
+    </ion-card>
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar color="dark">
+        <ion-buttons fill="solid">
+          <div class="keskita">
+              <!-- modaalin sulkeva painike -->
+              <ion-button  (click)="sulje()">
+                  Sulje
+                </ion-button>
+          </div>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,196 @@
+<!--Maarit Parkkonen, 2019, Uuden ilmoituksen tekonäkymä-->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>SaalisApp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <ion-card-content class="ion-no-padding">
+      <ion-list>
+        <ion-list-header color="dark">
+          <ion-label class="teksti">Tee ilmoitus</ion-label>
+        </ion-list-header>
+
+          <!-- lajiosastojen valintapainikkeet -->
+          <!-- avaavat lajilistausmodaalin -->
+            <ion-item>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <div>
+                      <ion-button size="small" expand="block" color="tertiary" (click)=avaaLajilista(1);>
+                        Marjat
+                      </ion-button> 
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div>
+                      <ion-button size="small" expand="block" color="warning" (click)=avaaLajilista(2);>
+                        Sienet
+                      </ion-button>
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <div>
+                      <ion-button size="small" expand="block" color="danger" (click)=avaaLajilista(3);>
+                       Kala
+                      </ion-button> 
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div>
+                      <ion-button size="small" expand="block" color="secondary" (click)=avaaLajilista(4);>
+                        Riista
+                      </ion-button>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+
+            <!-- valitun lajin nimi -->
+            <ion-item *ngIf="lajipalvelut.lajiNimi">
+                <ion-label>Laji:</ion-label>
+                <ion-text class="valikko">{{lajipalvelut.lajiNimi}}</ion-text>
+            </ion-item>
+
+            <form>
+              <!-- toiminnon valinta -->
+              <ion-item>
+                <ion-label>Toiminto:</ion-label>
+                <ion-select [(ngModel)]="uusi.toiminto" name="toiminto" placeholder="Valitse.." okText="Ok" cancelText="Peru" class="valikko">
+                  <ion-select-option value="myydään">Myyn</ion-select-option>
+                  <ion-select-option value="ostetaan">Ostan</ion-select-option>
+                  <ion-select-option value="annetaan">Annan</ion-select-option>
+                  <ion-select-option value="otetaan">Vastaanotan</ion-select-option>
+                </ion-select>
+              </ion-item>
+  
+              <!-- alueen valinta -->
+              <ion-item>
+                <ion-label>Alue:</ion-label>
+                <ion-select [(ngModel)]="uusi.alue" name="alue" placeholder="Valitse.." okText="Ok" cancelText="Peru" class="valikko"> 
+                  <ion-select-option [value]="maakunta" *ngFor="let maakunta of maakunnat">
+                    {{maakunta}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <!-- poistopäivämäärän valinta -->
+              <ion-item>
+                <ion-label>Voimassa:</ion-label>
+                  <ion-datetime
+                      [(ngModel)]="uusi.poistopvm"
+                      name="poistoPvm"
+                      placeholder="Valitse...."
+                      min="2019"
+                      max="2020"
+                      display-format="DDD D.M.YYYY"
+                      month-names="tammikuu, helmikuu, maaliskuu, huhtikuu, toukokuu, kesakuu, heinakuu, elokuu, syyskuu, lokakuu, marraskuu, joulukuu"
+                      month-short-names="tammi, helmi, maalis, huhti, touko, kesa, heina, elo, syys, loka, marras, joulu"
+                      day-names="sunnuntai, maanantai, tiistai, keskiviikko, torstai, perjantai, lauantai"
+                      day-short-names="su, ma, ti, ke, to, pe, la"
+                      cancel-text="Peru"
+                      done-text="OK">  
+                  </ion-datetime>
+                </ion-item>                 
+
+                <!-- yhteystietojen muokkausmodaalin avaus -->
+                <ion-button expand="full" fill="outline" color="dark" (click)="muokkaaYhteystiedot()"> 
+                    Muokkaa yhteystietoja
+                </ion-button> 
+                
+                <!-- tekstien lisäysmodaalin avaus -->
+                <ion-button expand="full" fill="outline" color="dark" (click)="lisaaTekstit()"> 
+                    Lisää tekstit
+                </ion-button> 
+ 
+                <!-- kuvan otttaminen tai muistista valinta -->
+                <ion-button expand="full" fill="outline" color="dark" (click)="lisaaKuva()">
+                    Lisää kuva
+                </ion-button> 
+
+              </form>
+
+              <!-- jos tietokannnan käsittelyssä virheitä-->
+              <ion-item *ngIf="dbpalvelut.virhe" lines="none">
+                <p>Virhe: {{dbpalvelut.virhe}}</p>
+              </ion-item>
+
+                <!-- TESTAUSTA VARTEN
+                <ion-item lines="none">
+                    <p>Laji: {{lajipalvelut.lajiNimi}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                    <p>Osasto: {{lajipalvelut.osasto}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                    <p>Toiminto: {{uusi.toiminto}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                    <p>Alue: {{uusi.alue}}</p>
+                  </ion-item>
+                <ion-item lines="none">
+                    <p>Otsikko: {{uusi.otsikko}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                    <p>Teksti: {{uusi.teksti}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                  <p>id: {{ilmoittaja.id}}</p>
+              </ion-item>
+                <ion-item lines="none">
+                    <p>Nimi: {{ilmoittaja.etunimi}} {{ilmoittaja.sukunimi}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                    <p>Osoite: {{ilmoittaja.katuosoite}} {{ilmoittaja.postinumero}} {{ilmoittaja.postitoimipaikka}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                    <p>Puhelin: {{ilmoittaja.puhelin}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                    <p>Email: {{ilmoittaja.email}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                    <p>Poistetaan: {{uusi.poistopvm}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                    <p>Tunnus: {{ilmoittaja.tunnus}}</p>
+                </ion-item>
+                -->
+
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+</ion-content>
+
+<ion-footer class="ion-no-padding">
+    <!-- alalaidan painikkeet -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <!-- peruutus ja paluu etusivulle-->
+            <ion-button size="medium" expand="full" color="dark" (click)="tyhjenna()" routerLink="/home">
+              <ion-icon slot="start" name="exit"></ion-icon>
+              Peruuta
+              </ion-button> 
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <!-- siirtyminen uuden ilmoituksen esikatseluun -->
+            <ion-button size="medium" expand="full" color="dark" (click)="esikatsele()">
+                <ion-icon slot="start" name="tablet-portrait"></ion-icon>
+                Esikatsele
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+</ion-footer>

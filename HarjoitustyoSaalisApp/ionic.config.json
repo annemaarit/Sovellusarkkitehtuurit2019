@@ -1,0 +1,7 @@
+{
+  "name": "SaalisApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

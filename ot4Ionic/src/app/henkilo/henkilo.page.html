@@ -1,0 +1,72 @@
+<!-- toinen näyttö, varaustiedotlomake 2 -->
+
+<!-- tilan varaaja, varsinainen header app.component.html:ssa-->
+<ion-header>
+    <ion-toolbar color="">
+      <ion-title>
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card color="light">
+      <ion-card-header>
+          <ion-card-title>Henkilötiedot</ion-card-title>
+      </ion-card-header>
+
+      <form>
+        <!-- henkilötiedot -->
+        <ion-item>
+          <ion-label position="floating">Nimi</ion-label>
+          <ion-input [(ngModel)]="mokkivaraus.varaus.varaaja.nimi" name="nimi" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Puhelin</ion-label>
+          <ion-input [(ngModel)]="mokkivaraus.varaus.varaaja.puhelin" name="puhelin" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Sähköposti</ion-label>
+          <ion-input [(ngModel)]="mokkivaraus.varaus.varaaja.email" name="email" type="text"></ion-input>
+        </ion-item>
+
+        <!-- maksutavan valinta -->
+        <ion-list>
+          <ion-radio-group [(ngModel)]="mokkivaraus.varaus.varaaja.maksutapa" name="maksutapa" >
+            <ion-list-header>
+              <ion-label>Maksutapa</ion-label>
+            </ion-list-header>
+      
+            <ion-item>
+              <ion-label>Lasku</ion-label>
+              <ion-radio slot="start" value="lasku"></ion-radio>
+            </ion-item>
+      
+            <ion-item>
+              <ion-label>Käteinen</ion-label>
+              <ion-radio slot="start" value="kateinen"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+
+      </form>
+
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+    <!-- navigointipainikkeet -->
+    <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button routerLink="/home" color="dark" fill="solid"> Edellinen
+            <ion-icon slot="start" name="arrow-back"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button routerLink="/kooste" color="dark" fill="solid">
+            <ion-icon slot="end" name="arrow-forward"></ion-icon> Seuraava
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
+</ion-footer>

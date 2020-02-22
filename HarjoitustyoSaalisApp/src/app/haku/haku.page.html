@@ -1,0 +1,146 @@
+<!--Maarit Parkkonen, 2019, hakunäkymä-->
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <span class="paaotsikko">
+            SaalisApp
+        </span>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    
+      <ion-card color="light">
+
+        <ion-card-content class="ion-no-padding">
+          <ion-img src="/assets/marjat.png"></ion-img>
+          <ion-list>
+            <ion-list-header class="otsikko">
+                Etsi ilmoituksia
+            </ion-list-header>  
+                
+            <!-- lajiosastojen valintapainikkeet -->
+            <!-- avaavat lajilistausmodaalin -->
+            <ion-item>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <div>
+                      <ion-button size="small" expand="block" color="tertiary" (click)=valitseLaji(1);>
+                        Marjat
+                      </ion-button> 
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div>
+                      <ion-button size="small" expand="block" color="warning" (click)=valitseLaji(2);>
+                        Sienet
+                      </ion-button>
+                    </div>
+                  </ion-col>
+                  </ion-row>
+                    <ion-row>
+                      <ion-col>
+                        <div>
+                          <ion-button size="small" expand="block" color="danger" (click)=valitseLaji(3);>
+                            Kala
+                          </ion-button> 
+                        </div>
+                      </ion-col>
+                      <ion-col>
+                        <div>
+                          <ion-button size="small" expand="block" color="secondary" (click)=valitseLaji(4);>
+                            Riista
+                          </ion-button>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+              </ion-item>
+
+              <!-- valitun lajin nimi -->
+              <ion-item *ngIf="lajipalvelut.lajiNimi" lines="none">
+                  <ion-label>Laji:</ion-label>
+                  <ion-text class="valikko">{{lajipalvelut.lajiNimi}} {{lajipalvelut.kaikkiValittu}}</ion-text>
+              </ion-item>
+
+              <form>
+                <ion-item>
+                  <!-- toiminnon valinta -->
+                  <ion-label>Toiminto:</ion-label>
+                  <ion-select [(ngModel)]="toiminto" name="toiminto" placeholder="Valitse.." okText="Ok" cancelText="Peru" class="valikko" (ionChange)="hakuOk();">
+                    <ion-select-option value="myydään">myydään</ion-select-option>
+                    <ion-select-option value="ostetaan">ostetaan</ion-select-option>
+                    <ion-select-option value="annetaan">annetaan</ion-select-option>
+                    <ion-select-option value="otetaan">otetaan</ion-select-option>
+                  </ion-select>
+                 </ion-item>
+
+               <!-- alueen valinta -->
+               <ion-item>
+                  <ion-label>Alue:</ion-label>
+                  <ion-select [(ngModel)]="alue" name="alue" placeholder="Valitse.." okText="Ok" cancelText="Peru" class="valikko" (ionChange)="hakuOk();"> 
+                    <ion-select-option [value]="maakunta" *ngFor="let maakunta of maakunnat">
+                      {{maakunta}}
+                    </ion-select-option>
+                  </ion-select>
+               </ion-item>
+
+               <!-- alueen valinta PICKERillä
+                <ion-item>
+                  <ion-label>Alue: </ion-label>
+                  <ion-button size="small" expand="block" color="tertiary" (click)=openPicker();>
+                    Alue
+                  </ion-button>
+                </ion-item> -->
+
+              </form>
+
+              <!-- TESTAUSTA VARTEN
+              <ion-item lines="none">
+                  <p>Laji: {{lajipalvelut.lajiNimi}}</p>
+              </ion-item>
+              <ion-item lines="none">
+                  <p>Osasto: {{lajipalvelut.osasto}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                  <p>Alue: {{alue}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                  <p>Toiminto: {{toiminto}}</p>
+              </ion-item>
+              -->
+             
+            </ion-list>
+          </ion-card-content>
+      </ion-card>
+
+  </ion-content>
+  
+  <ion-footer class="ion-no-padding">
+    <!-- alalaidan painikkeet -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <!-- peruutus ja paluu etusivulle-->
+            <ion-button size="medium" expand="full" color="dark" (click)="tyhjenna()" routerLink="/home">
+              <ion-icon slot="start" name="exit"></ion-icon>
+              Peruuta
+            </ion-button> 
+           </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <!-- haun aloitus-->
+            <ion-button size="medium" expand="full" color="dark" (click)="haeIlmoitukset()">
+              <ion-icon slot="start" name="search"></ion-icon>
+              Tee haku
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-footer>

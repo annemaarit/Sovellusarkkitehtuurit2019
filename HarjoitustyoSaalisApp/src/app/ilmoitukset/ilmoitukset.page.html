@@ -1,0 +1,107 @@
+<!-- Maarit Parkkonen 2019, SaalisApp, ilmoitusten näyttönäkymä-->
+<ion-header>
+    <ion-toolbar>
+      <!-- ohjausnuoli vasemmalle-->
+      <ion-button *ngIf="taaksepain" size="small" fill="clear" slot="start">
+            <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+      <ion-title> 
+          {{dianro}} ({{dbpalvelut.kpl}})
+      </ion-title>
+      <!--ohjausnuoli oikealle-->
+      <ion-button *ngIf="eteenpain" size="small" fill="clear" slot="end">
+          <ion-icon slot="icon-only" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+
+      <!-- ilmoitusslideri -->
+      <ion-slides name="diat" pager="true" [options]="slideOpts" (ionSlideNextEnd)=seuraavaDia() (ionSlidePrevEnd)=edellinenDia()>
+          <ion-slide *ngFor="let ilmoitus of dbpalvelut.ilmoituslista">
+
+            <ion-card class="welcome-card" color="light">
+              <!--kuva-->
+              <ion-img [src]="ilmoitus.kuva"></ion-img>
+              <ion-card-content class="ion-no-padding">
+                  <ion-list lines="none">
+                    <!--otsikko-->
+                      <ion-list-header class="otsikko">
+                        <ion-label>{{ilmoitus.otsikko}}</ion-label>
+                      </ion-list-header>
+                      <!--yleisteksti-->
+                      <ion-item>
+                        <p class="teksti">
+                            {{ilmoitus.teksti}}
+                        </p>
+                      </ion-item>
+                      <!--ilmoittajan nimi-->
+                      <ion-item>
+                        <ion-icon slot="start" color="tertiary" name="person"></ion-icon>
+                        <ion-label>{{ilmoitus.ilmoittaja.etunimi}} {{ilmoitus.ilmoittaja.sukunimi}}</ion-label>
+                      </ion-item>
+                      <!--puhelinnumero-->
+                      <ion-item *ngIf="ilmoitus.ilmoittaja.puhelin">
+                          <ion-icon slot="start" color="tertiary" name="call"></ion-icon>
+                          <ion-label>{{ilmoitus.ilmoittaja.puhelin}}</ion-label>
+                      </ion-item>
+                      <!--sähköposti-->
+                      <ion-item *ngIf="ilmoitus.ilmoittaja.email">
+                          <ion-icon slot="start" color="tertiary" name="mail"></ion-icon>
+                          <ion-label>{{ilmoitus.ilmoittaja.email}}</ion-label>
+                      </ion-item>
+                      <!--alue-->
+                      <ion-item>
+                          <ion-icon slot="start" color="tertiary" name="locate"></ion-icon>
+                          <ion-label>{{ilmoitus.alue}}</ion-label>
+                      </ion-item>
+                      <!--ilmoituksen julkaisupäivä-->
+                      <ion-item>
+                          <ion-icon slot="start" color="tertiary" name="time"></ion-icon>
+                          <ion-label>{{ilmoitus.paivays}}</ion-label>
+                      </ion-item>
+
+                    </ion-list>                
+              </ion-card-content>
+            
+            </ion-card>
+          </ion-slide>
+      </ion-slides>
+    
+    <!-- tietokantahaun virheteksti -->
+     <ion-item>
+        <ion-text *ngIf="dbpalvelut.virhe">Virhe: {{dbpalvelut.virhe | json}}</ion-text>
+        <!--
+        <ion-text>SQL: {{dbpalvelut.testi}}</ion-text>
+        -->
+    </ion-item> 
+
+  </ion-content>
+  
+<ion-footer class="ion-no-padding">
+    <!-- alapainikkeet -->
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+              <div>
+                  <!-- poistuminen etusivulle -->
+                  <ion-button size="medium" expand="full" color="dark" routerLink="/home">
+                    <ion-icon slot="start" name="exit"></ion-icon>
+                    Etusivulle
+                  </ion-button> 
+                </div>
+          </ion-col>
+          <ion-col>
+            <div>
+                <!-- poistuminen hakusivulle -->
+                <ion-button size="medium" expand="full" color="dark" routerLink="/haku">
+                  <ion-icon slot="start" name="apps"></ion-icon>
+                    Uusi haku
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+</ion-footer>

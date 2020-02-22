@@ -1,0 +1,65 @@
+<!-- @Maarit Parkkonen, Ot8, Sijaintimuistio, päänäkymä -->
+<!-- tämä sovellus toimii iOS laitteessa, ei Androidissa-->
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      Sijaintimuistio
+    </ion-title>
+    <ion-buttons slot="end">
+      <!-- uuden paikan lisäys painike-->
+      <ion-button color="medium" fill="solid" size="small" (click)="uusiPaikka()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+      <!-- lista tallennetuista paikoista-->
+      <ion-list>
+          <ion-list-header color="medium">
+              <ion-label>Tallennetut</ion-label>
+          </ion-list-header>
+
+          <!-- jos lista tyhjä-->
+          <ion-item *ngIf="dbpalvelut.paikkalista.length==0">
+            <h4>
+              Ei tallennettuja tietoja
+            </h4>
+          </ion-item>
+
+          <!-- paikkojen läpikäynti -->
+          <ion-item *ngFor="let paikka of dbpalvelut.paikkalista">
+              <ion-text (click)="naytaTiedot(paikka)">
+                <p>
+                  <i>{{paikka.pvm  | date:'d.M.yyyy h:mm'}}</i>
+                </p>
+                <h4>
+                  {{paikka.otsikko}}
+                </h4>
+              </ion-text>
+              <ion-buttons slot="end">
+                <!-- kuvan lisääminen paikkaan painike-->
+                <ion-button fill="solid" size="small" (click)="kysyKuvalahde(paikka.id);">
+                  <ion-icon slot="icon-only" name="camera"></ion-icon>
+                </ion-button>
+                <!-- paikan poistaminen painike-->
+                <ion-button color="danger" fill="solid" size="small" (click)="poistaPaikka(paikka)">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+          </ion-item>
+          <ion-item>
+            
+          </ion-item>
+        </ion-list>
+  </ion-card>
+
+    <!--
+    {{dbpalvelut.kuvalista}}
+    {{dbpalvelut.paikkalista|json}}
+    -->
+
+
+</ion-content>

@@ -1,0 +1,50 @@
+<!-- uuden paikan kyselymodaalin sisältö-->
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Sijaintimuistio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+      <ion-list>
+          <ion-list-header color="medium">
+              <ion-label>Lisää uusi paikka</ion-label>
+          </ion-list-header>
+
+          <!-- syöttökentät -->
+          <ion-item lines="none">
+              <ion-label>Otsikko</ion-label>
+          </ion-item>
+          <ion-item>
+              <ion-input [(ngModel)]="paikka.otsikko" placeholder="Kuvaile lyhyesti.."></ion-input>
+          </ion-item>
+    
+          <ion-item lines="none">
+              <ion-label>Lisätiedot</ion-label>
+          </ion-item>
+          <ion-item>
+              <ion-textarea  [(ngModel)]="paikka.teksti" rows="6" placeholder="Kirjoita enemmän tähän..."></ion-textarea>
+          </ion-item>
+        
+      </ion-list>
+
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+    <!-- toimintopainikkeet -->
+    <ion-toolbar color="dark">
+        <ion-buttons slot="end"  fill="solid">
+            <ion-button  (click)="laheta()">
+                Tallenna
+              </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="start" fill="solid">
+          <ion-button  (click)="peruuta()">
+                Peruuta
+           </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

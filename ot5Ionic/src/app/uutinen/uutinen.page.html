@@ -1,0 +1,44 @@
+<!-- /@Maarit Parkkonen, 2019,
+     yksittäisen uutisen sivu -->
+
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Uutissovellus
+      </ion-title>
+      <!-- sulje painike -->
+      <ion-buttons slot="end">
+          <ion-button color="dark" fill="solid" routerLink="/home">
+            Sulje
+          </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+        <!-- uutiskortti -->
+        <ion-card color="light">
+          <ion-card-header>
+            <ion-card-title>{{uutinen.otsikko}}</ion-card-title>
+            <br>
+            <i>{{uutinen.pvm}}</i>
+          </ion-card-header>
+          
+          <!-- kuva -->
+          <ion-card-content>
+            <ion-item>
+                <ion-img [src]="uutinen.kuva" padding></ion-img>
+            </ion-item>
+      
+            <ion-item>
+                {{uutinen.sisalto}}
+            </ion-item>
+          
+          <!-- linkki alkuperäiseen uutiseen-->
+          </ion-card-content>
+          <ion-card-subtitle padding>
+            <a href="uutinen.linkki">{{uutinen.linkki}}</a> 
+          </ion-card-subtitle>
+        </ion-card>
+  
+  </ion-content>

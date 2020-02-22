@@ -1,0 +1,50 @@
+<!-- /@Maarit Parkkonen, 2019,
+     uutislistasivu -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Uutissovellus
+    </ion-title>
+    <!-- päivityspainike -->
+    <ion-buttons slot="end">
+        <ion-button color="dark" fill="solid" (click)=paivitaUutiset()>
+          Päivitä
+          <ion-icon name="refresh" slot="start"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+   
+  <H2>Uutiset</H2>
+
+    <!-- valikko kategorioista -->
+    <ion-item>
+      <ion-label>Kategoria:</ion-label>
+        <ion-select [(ngModel)]="kategoriaValinta" name="kategoria" placeholder="Valitse.." okText="OK" cancelText="Peru" (ionChange)="vaihdaKategoria()">
+             <ion-select-option [value]="kategoria" *ngFor="let kategoria of uutislista.kategoriat">
+                {{kategoria}}
+              </ion-select-option>
+        </ion-select>
+    </ion-item>
+
+  <!-- uutislista -->
+  <ion-list>
+    <ion-item *ngFor="let uutinen of uutislista.uutiset; let i = index" [routerLink]="'/uutinen/'+i"> <!-- uutisten läpikäynti -->
+      
+      <!-- uutiskortti -->
+      <ion-card color="light">
+        <ion-card-header>
+          <ion-badge color="danger" *ngIf="uutinen.uusi">UUSI</ion-badge> <!-- jos uutinen on ensimmäistä kertaa listalla -->
+          <ion-card-title>{{uutinen.otsikko}}</ion-card-title>
+          <br>
+          <i>{{uutinen.ika}}</i>
+        </ion-card-header>
+      </ion-card>
+
+    </ion-item>
+  </ion-list>
+
+</ion-content>

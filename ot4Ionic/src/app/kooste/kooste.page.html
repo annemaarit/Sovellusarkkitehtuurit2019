@@ -1,0 +1,83 @@
+<!-- kolmas näyttö, yhteenveto -->
+
+<!-- tilan varaaja, varsinainen header app.component.html:ssa-->
+<ion-header>
+    <ion-toolbar color="">
+      <ion-title>
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card color="light">
+
+    <ion-card-header>
+        <ion-card-title>Yhteenveto</ion-card-title>
+    </ion-card-header>
+  
+  <!-- tiedot kytketty gridin sisälle -->
+  <ion-item>
+      <ion-grid>
+          <ion-row>
+            <ion-col size="6">Mökki:</ion-col>
+            <ion-col>{{mokkivaraus.varaus.mokki.nimi}} ({{mokkivaraus.varaus.mokki.hinta}}€)</ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col size="6">AlkuPvm:</ion-col>
+              <ion-col>{{muunnaPaivays()}}</ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col size="6">Kesto, vrk:</ion-col>
+              <ion-col>{{mokkivaraus.varaus.paivatKpl}}</ion-col>
+          </ion-row>       
+          <ion-row>
+              <ion-col size="6">Siivous:</ion-col>
+              <ion-col>{{siivotaanko()}}</ion-col>
+            </ion-row>
+
+            <ion-row><ion-col></ion-col></ion-row>
+
+            <ion-row>
+                <ion-col size="6">Nimi:</ion-col>
+                <ion-col>{{mokkivaraus.varaus.varaaja.nimi}}</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="6">Puhelin:</ion-col>
+                <ion-col>{{mokkivaraus.varaus.varaaja.puhelin}}</ion-col>
+            </ion-row>       
+            <ion-row>
+                <ion-col size="6">Sähköposti:</ion-col>
+                <ion-col>{{mokkivaraus.varaus.varaaja.email}}</ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col size="6">Maksutapa:</ion-col>
+                  <ion-col>{{mokkivaraus.varaus.varaaja.maksutapa}}</ion-col>
+              </ion-row>    
+              
+              <ion-row><ion-col></ion-col></ion-row>
+
+              <ion-row>
+                  <ion-col size="6">Loppusumma:</ion-col>
+                  <ion-col>
+                      <ion-badge color="danger">{{mokkivaraus.varaus.summa}}€</ion-badge>
+                  </ion-col>
+              </ion-row>  
+        </ion-grid>
+  
+  </ion-item>
+
+  <ion-button type="button" expand="block" (click)="vahvistaVaraus()">Vahvista varaus</ion-button>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <!-- navigointipainikkeet -->
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button routerLink="/henkilo" color="dark" fill="solid"> Edellinen
+            <ion-icon slot="start" name="arrow-back"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+</ion-footer>

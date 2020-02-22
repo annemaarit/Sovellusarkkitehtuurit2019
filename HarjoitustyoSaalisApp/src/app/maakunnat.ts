@@ -1,0 +1,22 @@
+export const maakunnat: string[]=[
+'koko Suomi',
+'Ahvenanmaa',
+'Etelä-Karjala',
+'Etelä-Pohjanmaa',
+'Etelä-Savo',
+'Kainuu',
+'Kanta-Häme',
+'Keski-Pohjanmaa',
+'Keski-Suomi',
+'Kymenlaakso',
+'Lappi',
+'Pirkanmaa',
+'Pohjanmaa',
+'Pohjois-Karjala',
+'Pohjois-Pohjanamaa',
+'Pohjois-Savo',
+'Päijät-Häme',
+'Satakunta',
+'Uusimaa',
+'Varsinais-Suomi'
+]

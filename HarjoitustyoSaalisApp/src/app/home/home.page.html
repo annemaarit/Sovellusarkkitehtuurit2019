@@ -1,0 +1,40 @@
+<!-- Maarit Parkkonen, SaalisApp -sovelluksen etusivu --><ion-header>
+  <ion-toolbar>
+    <ion-title>
+      SaalisApp
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="welcome-card">
+        <ion-img src="/assets/puolukat.jpg"></ion-img>
+        <ion-card-header>
+            <ion-card-title>
+                Tervetuloa
+            </ion-card-title>
+          </ion-card-header>
+        <ion-card-content class="ion-no-padding">
+            <ion-list lines="none">
+                <ion-list-header>
+                  <ion-label>Mitä haluat tehdä?</ion-label>
+                </ion-list-header>
+                <!-- siirtyminen hakunäkymään -->
+                <ion-item routerLink="/haku">
+                  <ion-icon slot="start" color="tertiary" name="search"></ion-icon>
+                  <ion-label>Hakea ilmoituksia</ion-label>
+                </ion-item>
+                <!-- ohjaus uuden ilmoituksen julkaisuun, ensin käyttäjätunnuksen tarkistus-->
+                <ion-item (click)="onkoKayttajaTiedossa(true);" routerLink="">
+                  <ion-icon slot="start" color="tertiary" name="share"></ion-icon>
+                  <ion-label>Julkaista uuden</ion-label>
+                </ion-item>
+                <!-- ohjaus käyttäjän omiin ilmoituksiin, ensin käyttäjätunnuksen tarkistus-->
+                <ion-item (click)="onkoKayttajaTiedossa(false);" routerLink="">
+                  <ion-icon slot="start" color="tertiary" name="hammer"></ion-icon>
+                  <ion-label>Muokata tai poistaa</ion-label>
+                </ion-item>
+              </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

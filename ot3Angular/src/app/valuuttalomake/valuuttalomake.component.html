@@ -1,0 +1,57 @@
+<!--@Maarit Parkkonen, 2019-->
+
+<!-- valuuttatietojen syöttö ja valinta -->
+<form [formGroup]="valuuttaLomake">
+  <!-- summan määrä -->
+  <div class="form-group ryhma">
+      <label for="summa">Summa</label>
+      <input formControlName="summaControl" [value]="summa" id="summa" class="form-control" type="text" pattern="^[0-9]\d*\056?\d*" required>
+  </div>
+
+  <!-- jos summan syötössä virheitä-->
+  <div *ngIf="valuuttaLomake.controls.summaControl.errors?.required && valuuttaLomake.controls.summaControl.touched" class="alert alert-danger">
+       Summa puuttuu.
+  </div>
+  <div *ngIf="valuuttaLomake.controls.summaControl.errors?.pattern" class="alert alert-danger"> 
+       Summa on virheellinen. Vain numerot ja . hyväksytään.
+  </div>
+
+  <!-- Lähdevaluutan valinta -->
+  <div class="form-group ryhma">
+    <label for="lahdevaluutta">Lähdevaluutta</label>
+    <select formControlName="lahdeControl" class="form-control" id="lahdevaluutta" (change)="vaihdaLahdevaluutta()">
+      <option [ngValue]="valuutta" *ngFor="let valuutta of valuuttalista.valuutat">
+        {{ valuutta.FI }}
+      </option>
+    </select>
+  </div>
+  
+  <!-- Kohdevaluutan valinta -->
+  <div class="form-group ryhma"> 
+    <label for="kohdevaluutta">Kohdevaluutta</label>
+    <select formControlName="kohdeControl" class="form-control" id="kohdevaluutta">
+      <option value=null disabled>Valitse..</option>
+      <option [ngValue]="valuutta" *ngFor="let valuutta of valuuttalista.valuutat">
+          {{ valuutta.FI }} ({{valuutta.kurssi}})
+      </option>
+    </select>
+  </div>
+
+ </form>
+
+ <!-- Laskentapainike -->
+ <button class="btn btn-primary mt-3" (click)="laskeMuunnos()">Muunna</button> 
+
+ <!-- virheilmoitukset -->
+ <div class="alert alert-danger mt-3 border" *ngIf="virhe1"> <!-- kohdevaluutta puuttuu -->
+    {{virhe1}} 
+</div>
+<div class="alert alert-danger mt-3 border" *ngIf="virhe2"> <!-- summa puuttuu -->
+  {{virhe2}} 
+</div>
+
+<!-- testausta varten -->
+ <!--<div class="alert alert-info mt-3 border">
+     {{valuuttaLomake.value | json}} 
+ </div>-->
+

@@ -1,0 +1,63 @@
+<!-- Ot8, Lähin Otto-automaattisovellus, näkymä -->
+<!-- HUOM!! Toimii hyvin IOS:ssa mutta ei Androidissa, ks. koodin loppuun-->
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      OTTO
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="welcome-card">
+      
+      <ion-card-header>
+        <ion-card-subtitle>Etsi lähin</ion-card-subtitle>
+        <ion-card-title>Otto-automaatti</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <!-- lähimmän automaatin etsimisen aloittava painike-->
+        <ion-button size="medium" expand="full" color="dark" (click)="etsiLahin()">
+          <ion-icon slot="start" name="search"></ion-icon>
+          Aloita haku
+        </ion-button> 
+
+      <!-- lähimmän automaatin tiedot-->
+       <ion-card color="light">
+        <ion-list *ngIf="lahinOtto">
+          <ion-list-header>
+            <ion-label>Sijainti:</ion-label>
+          </ion-list-header>
+          <ion-item lines="none">
+           <ion-text>{{lahinOtto.kohteenOsoite}}</ion-text>
+          </ion-item>
+          <ion-item>
+           <ion-text>{{lahinOtto.postinumero}} {{lahinOtto.postitoimipaikka}}</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label>Etäisyys</ion-label>
+            <ion-text>{{etaisyys}} km</ion-text>
+          </ion-item>
+        </ion-list>
+
+       </ion-card>
+       
+       <!-- virheen ilmoitus-->
+        <ion-item *ngIf="virhe">
+          <p>
+            Paikkannuksessa tapahtui virhe {{virhe.code}}: {{virhe.message}}.
+            <!--
+              Samsung Galaxy S9, Android: "Only secure origins are allowed (see: https ://goo.gl/Y0ZkNV)." eli:
+              https://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features
+
+              https://github.com/apache/cordova-plugin-geolocation/issues/123 esitelty sama ongelma. Sen mukaan vika olisi
+              mahdollisesti dev appin tavassa käyttää http:tä https:n sijaan..?
+            -->
+          </p>
+        </ion-item>
+
+      </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,81 @@
+<!-- tyylimäärityksiä:
+        - global.scss (taustaväri ja perusfontin väri)
+        - variables.scss (perusfontin koko, paikka -luokka ja oletusvärien Dark ja Medium muutoksia)-->
+
+<ion-header>
+  <ion-toolbar color="dark">
+    <!-- sovellusnimi-->
+    <div class="ion-padding-start">
+        <p>
+            Mobiilisää
+        </p>
+    </div>
+    <!-- päivityspainike -->
+    <ion-buttons slot="end">
+      <ion-button color="light" fill="solid" (click)=vaihdaKaupunki()>
+        Paikkakunta
+        <ion-icon name="search" slot="start"></ion-icon>
+      </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <b>1 vrk</b>
+      <!-- paikkakunnan sääkortti -->
+      <ion-card color="medium">
+          <!-- paikan nimi otsikkona-->
+          <ion-card-header class="paikka">
+            {{saatiedot.tiedot.paikka}}
+          </ion-card-header>
+          <ion-item color="light">
+            <ion-grid>
+              <!-- säätyyppi teksti ja ikoni-->
+              <ion-row>
+                  <ion-col size="4">Sää:</ion-col>
+                  <ion-col>{{saatiedot.tiedot.kuvaus}}
+                    <ion-thumbnail>
+                      <img [src]="saatiedot.tiedot.ikoni">
+                    </ion-thumbnail>
+                  </ion-col>
+              </ion-row>
+              <!-- lämpätilan keskiarvo-->
+              <ion-row>
+                  <ion-col size="4">Lämpötila:</ion-col><ion-col>{{saatiedot.tiedot.lampotila}}C</ion-col>
+              </ion-row>
+              <!-- minimilämpötila-->
+              <ion-row>
+                  <ion-col size="4">Min:</ion-col><ion-col>{{saatiedot.tiedot.lampoMin}}C</ion-col>
+              </ion-row>
+              <!-- maksimilämpötila -->
+              <ion-row>
+                  <ion-col size="4">Max:</ion-col><ion-col>{{saatiedot.tiedot.lampoMax}}C</ion-col>
+              </ion-row>
+              <!-- tuulisuus -->
+              <ion-row>
+                  <ion-col size="4">Tuuli:</ion-col><ion-col>{{saatiedot.tiedot.tuuli}} m/s</ion-col>
+              </ion-row>
+            </ion-grid>
+                  
+          </ion-item>
+        </ion-card>
+
+        <!-- virheilmoituksen kortti-->
+        <ion-card color="danger" *ngIf="saatiedot.virhe">
+          <ion-card-header>
+            Virhe
+          </ion-card-header>
+          <ion-item color="light" padding>
+            {{saatiedot.virhe}}
+          </ion-item>
+        </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="dark">
+    <div class="ion-text-center">
+        <p>@Maarit Parkkonen, 2019</p>
+    </div>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,41 @@
+<!--
+    file: saatavat.component.html
+    desc: OT2, vippikirjanpito
+            - saatavien näkymä: taulukko, lisäyskentät ja saatavan poisto
+    date: 30.1.2019
+    auth: Maarit Parkkonen
+--> 
+<div class="card">
+  <h2>Saatavat</h2>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Kenelle</th>
+        <th>Summa</th>
+        <th></th>
+      </tr>
+    </thead>  
+    <tbody>
+      <!--kaikkien saatavien läpikäynti-->
+      <tr *ngFor="let vippaus of vippilistat.saatavat">                                                 
+        <td>{{ vippaus.nimi }}</td>
+        <td>{{ vippaus.summa }}</td>
+         <!--saatavan poistopainike-->
+        <td><button (click)="poistaSaatava(vippaus.id)" class="btn btn-danger ml-2">Poista</button></td>
+      </tr>
+  
+    <tr>  <!--uuden saatavan lisäys-->
+        <td><input [(ngModel)]="nimi" type="text" class="form-control" placeholder="kenelle.."></td>
+        <td><input [(ngModel)]="summa" type="text" class="form-control" placeholder="summa"></td>
+        <td><button (click)="lisaaUusiSaatava()" class="btn btn-info ml-2">Lisää saataviin</button></td>
+    </tr>
+  
+    </tbody>
+  </table>
+  <p>Saatavasi on yhteensä {{summaus}} euroa</p>
+
+</div>
+
+<!--paluu painike päänäkymään-->
+<button routerLink="" class="btn btn-primary paluu mt-3">Sulje</button>

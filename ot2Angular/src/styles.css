@@ -1,0 +1,39 @@
+/*
+    file: styles.css
+    desc: OT2, vippikirjanpito
+            - yleiset tyylimääritykset
+    date: 30.1.2019
+    auth: Maarit Parkkonen
+*/
+
+/*otetaan bootstrap mukaan*/
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+/*https://www.w3schools.com/howto/howto_css_cards.asp*/
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.384);
+    transition: 0.3s;
+    border-radius: 5px;
+    padding: 2px 16px;
+    margin-top: 20px;
+    padding: 20px;
+    max-width: 900px;
+  }
+
+  /*omia määrityksiä*/
+  button {
+    width: 200px;
+  }
+
+  .uusi {
+      background-color: rgb(205, 219, 245);
+  }
+
+  .paluu {
+      margin-top: 20px;
+  }
+
+  .tekija {
+        margin-top: 20px;
+        font-style: italic;
+  }

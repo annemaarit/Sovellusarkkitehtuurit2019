@@ -1,0 +1,53 @@
+  <!-- Maarit Parkkonen 2019, SaalisApp, uuden ilmoituksen tekstimodaali-->
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>SaalisApp</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+      <ion-card class="welcome-card" color="light">
+        <ion-card-content class="ion-no-padding">
+            <ion-list>
+                <ion-list-header color="dark">
+                  <ion-label>Uuden ilmoituksen tekstit</ion-label>
+                </ion-list-header>
+                
+                <!-- ilmoituksen teksti -->
+                <ion-item>
+                    <ion-label position="stacked">Otsikko*</ion-label>
+                    <ion-input [(ngModel)]="asetukset.otsikko" placeholder="Kirjoita lyhyesti.."></ion-input>
+                </ion-item>
+                
+                <!-- ilmoituksen yleinen teksti-->
+                <ion-item>
+                    <ion-label position="stacked">Ilmoitusteksti*</ion-label>
+                    <ion-textarea [(ngModel)]="asetukset.teksti" placeholder="Kuvaile vapaasti.." rows="8"></ion-textarea>
+                  </ion-item>
+              </ion-list>                
+        </ion-card-content>
+      
+      </ion-card>
+    </ion-content>
+    
+    <ion-footer class="ion-no-padding">
+        <!--alapainikkeet-->
+        <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div>
+                  <ion-button size="medium" expand="full" color="medium" (click)=peruuta()>
+                    Peru
+                  </ion-button>
+                </div>
+              </ion-col>
+              <ion-col>
+                <div>
+                  <ion-button size="medium" expand="full" color="medium" (click)=valmis()>
+                    Valmis
+                  </ion-button>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+    </ion-footer>

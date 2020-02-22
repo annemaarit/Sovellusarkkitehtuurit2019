@@ -1,0 +1,10 @@
+<!--
+    file: valinta.component.html
+    desc: OT2, vippikirjanpito
+            - päänäkymä: painikkeet velkoihin ja saataviin
+    date: 30.1.2019
+    auth: Maarit Parkkonen
+--> 
+
+<a routerLink="velat" class="btn btn-primary nappi">Velat ( {{velkaSumma  | currency : "EUR" }} )</a>
+<a routerLink="saatavat" class="btn btn-success nappi">Saatavat ( {{saatavatSumma  | currency : "EUR" }} )</a>

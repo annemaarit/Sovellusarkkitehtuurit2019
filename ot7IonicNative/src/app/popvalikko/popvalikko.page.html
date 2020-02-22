@@ -1,0 +1,27 @@
+<!-- @Maarit Parkkonen, 2019, ot7, kuvaussovellus: uusi/tallennettu kuvavalikon popup näkymä-->
+<ion-header>
+  <ion-toolbar>
+   <ion-text class="otsikko">
+     <h3>
+        Valitse
+     </h3>
+   </ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-item>
+    <ion-button color="dark" fill="block" size="large" (click)="kuvalista.otaKuva(true)"> <!-- kameralla -->
+      <ion-icon name="camera" slot="start"></ion-icon>
+        Uusi kuva
+    </ion-button>
+  </ion-item>
+  <ion-item>
+    <ion-button color="dark" fill="block" size="large" (click)="kuvalista.otaKuva(false)"> <!-- tiedostosta -->
+      <ion-icon name="images" slot="start"></ion-icon>
+        Tallennettu
+    </ion-button>
+  </ion-item>
+</ion-list>
+</ion-content>

@@ -1,0 +1,35 @@
+<!-- Ot8, QR-koodin luku ja avaus sovelluksen sisäiseen selaimeen -näkymä -->
+<!-- HUOM!! Toimii hyvin Androidissa mutta ei IOS:ssa -->
+<!-- IOS:ssa sama ongelma kuin: https://github.com/ionic-team/ionic-v3/issues/108-->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      QR-koodi
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-subtitle>Siirry verkkosivulle</ion-card-subtitle>
+      <ion-card-title>QR-koodilla</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <!-- skannauksen käynnistävä painike-->
+      <ion-button size="medium" expand="full" color="dark" (click)="skannaaQR()">
+        <ion-icon slot="start" name="search"></ion-icon>
+        Skannaa QR
+      </ion-button> 
+
+      <!-- virheen ilmoitus-->
+     <ion-card color="light" *ngIf="virhe">
+      <ion-item >
+        {{virhe}}
+      </ion-item>
+     </ion-card>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
